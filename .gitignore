@@ -1,0 +1,8 @@
+node_modules/
+.session/
+wwebjs_auth/
+*.log
+.DS_Store
+.env
+pedidos.json
+bot.log
