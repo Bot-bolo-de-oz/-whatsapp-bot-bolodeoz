@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "nome": "Bolo de Cenoura com Chocolate",
+    "preco": 25
+  },
+  {
+    "id": 2,
+    "nome": "Bolo de Chocolate Caseiro",
+    "preco": 28
+  },
+  {
+    "id": 3,
+    "nome": "Bolo Formigueiro",
+    "preco": 26
+  },
+  {
+    "id": 4,
+    "nome": "Bolo de Fubá com Goiabada",
+    "preco": 24
+  },
+  {
+    "id": 5,
+    "nome": "Bolo de Milho Cremoso",
+    "preco": 25
+  }
+]
