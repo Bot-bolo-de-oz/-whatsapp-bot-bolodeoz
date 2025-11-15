@@ -27,7 +27,7 @@ const METRICS = {
 
 // 🖥️ Configuração do Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 // Variáveis globais para status
 let qrCodeData = null;
@@ -169,6 +169,14 @@ function salvarPedido(pedido) {
 
 let cardapio = carregarCardapio();
 ensureCardapio();
+
+// 🔧 CORREÇÃO DO CARDÁPIO - ADICIONE ESTAS LINHAS:
+if (cardapio.length === 0) {
+  console.log('🔄 Cardápio vazio, recriando...');
+  ensureCardapio();
+  cardapio = carregarCardapio();
+  console.log('✅ Cardápio recriado com sucesso!');
+}
 
 // 🏪 Sistema de Estados
 const FLUXO = {
