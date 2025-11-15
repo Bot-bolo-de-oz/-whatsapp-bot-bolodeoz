@@ -170,12 +170,28 @@ function salvarPedido(pedido) {
 let cardapio = carregarCardapio();
 ensureCardapio();
 
-// 🔧 CORREÇÃO DO CARDÁPIO - ADICIONE ESTAS LINHAS:
-if (cardapio.length === 0) {
-  console.log('🔄 Cardápio vazio, recriando...');
-  ensureCardapio();
-  cardapio = carregarCardapio();
-  console.log('✅ Cardápio recriado com sucesso!');
+function carregarCardapio() {
+  try {
+    if (!fs.existsSync(CARDAPIO_FILE)) {
+      ensureCardapio();
+    }
+    
+    const data = fs.readFileSync(CARDAPIO_FILE, 'utf8');
+    
+    // 🔧 CORREÇÃO FORTE - Se estiver vazio, recria
+    if (!data || data.trim() === '' || data === '[]') {
+      console.log('🔄 Cardápio vazio ou inválido, recriando...');
+      ensureCardapio();
+      return JSON.parse(fs.readFileSync(CARDAPIO_FILE, 'utf8'));
+    }
+    
+    const cardapio = JSON.parse(data);
+    return Array.isArray(cardapio) ? cardapio : [];
+  } catch (error) {
+    console.log('🔄 Erro ao carregar cardápio, recriando...', error.message);
+    ensureCardapio();
+    return JSON.parse(fs.readFileSync(CARDAPIO_FILE, 'utf8'));
+  }
 }
 
 // 🏪 Sistema de Estados
